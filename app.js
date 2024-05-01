@@ -13,6 +13,7 @@ const postRoutes = require('./router/post');
 const tournamentRoutes = require('./router/tournament');
 const typeRoutes = require('./router/type');
 const formatRoutes = require('./router/format');
+const roundRoutes = require('./router/round');
 
 // Configure Bodyparse
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -33,6 +34,7 @@ app.use(`/api/${API_VERSION}`, postRoutes);
 app.use(`/api/${API_VERSION}`, tournamentRoutes);
 app.use(`/api/${API_VERSION}`, typeRoutes);
 app.use(`/api/${API_VERSION}`, formatRoutes);
+app.use(`/api/${API_VERSION}`, roundRoutes);
 
 
 

@@ -5,16 +5,19 @@ const TournamentSchema = mongoose.Schema({
     name: String,
     startDate: Date,
     endDate: Date,
-    format: String,
+    formats: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Format"
+    }],
     reward: String,
     price: Number,
     code: String,
     stageNumber: Number,
     location: String,
-    typeTournament:[{
+    active: Boolean,
+    typeTournaments:[{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Type",
-        unique: true
+        ref: "Type"
     }]
 })
 

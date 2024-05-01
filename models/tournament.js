@@ -2,15 +2,20 @@ const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate');
 
 const TournamentSchema = mongoose.Schema({
-    Name: String,
-    Star_Date: Date,
-    End_Date: Date,
-    Format: String,
-    Reward: String,
-    Prize: Number,
-    Code: String,
-    Stages: Number,
-    Location: String
+    name: String,
+    startDate: Date,
+    endDate: Date,
+    format: String,
+    reward: String,
+    price: Number,
+    code: String,
+    stageNumber: Number,
+    location: String,
+    typeTournament:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Type",
+        unique: true
+    }]
 })
 
 TournamentSchema.plugin(mongoosePaginate);

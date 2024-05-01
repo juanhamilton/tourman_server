@@ -11,6 +11,7 @@ const userRoutes = require('./router/user');
 const menuRoutes = require('./router/menu');
 const postRoutes = require('./router/post');
 const tournamentRoutes = require('./router/tournament');
+const typeRoutes = require('./router/type');
 
 // Configure Bodyparse
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -29,6 +30,7 @@ app.use(`/api/${API_VERSION}`, userRoutes);
 app.use(`/api/${API_VERSION}`, menuRoutes);
 app.use(`/api/${API_VERSION}`, postRoutes);
 app.use(`/api/${API_VERSION}`, tournamentRoutes);
+app.use(`/api/${API_VERSION}`, typeRoutes);
 
 
 

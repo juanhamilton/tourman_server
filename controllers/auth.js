@@ -11,9 +11,7 @@ function register(req, res) {
   const user = new User({
     firstname,
     lastname,
-    email: email.toLowerCase(),
-    role: "user",
-    active: false,
+    email: email.toLowerCase()
   });
 
   const salt = bcrypt.genSaltSync(10);
@@ -47,8 +45,6 @@ function login(req, res) {
           res.status(500).send({ msg: "Error del Servidor" });
         } else if (!check) {
           res.status(400).send({ msg: "La contraseña es incorrecta" });
-        } else if (!userStore.active) {
-          res.status(401).send({ msg: "Usuario no Autorizado o no activo" });
         } else {
           res.status(200).send({
             access: jwt.createAccesToken(userStore),

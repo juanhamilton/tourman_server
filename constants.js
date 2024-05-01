@@ -1,6 +1,6 @@
 const DB_USER = "jverdugo2002";
-const DB_PASSWORD = "5rJGjud9FB3x2g0G";
-const DB_HOST = "colman.ot0kjeg.mongodb.net";
+const DB_PASSWORD = "kQ4e1tj4aclEAxfB";
+const DB_HOST = "tourman.ambuicu.mongodb.net";
 
 const API_VERSION = "v1";
 const IP_SERVER = "localhost";

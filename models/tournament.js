@@ -8,7 +8,9 @@ const TournamentSchema = mongoose.Schema({
     Format: String,
     Reward: String,
     Prize: Number,
-    Code: String
+    Code: String,
+    Stages: Number,
+    Location: String
 })
 
 TournamentSchema.plugin(mongoosePaginate);

@@ -18,6 +18,7 @@ function register(req, res) {
   const hashPassword = bcrypt.hashSync(password, salt);
 
   user.password = hashPassword;
+  user.role = 'user';
 
   user.save((error, userStorage) => {
     if (error) {

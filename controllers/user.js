@@ -30,8 +30,10 @@ async function getUsers(req, res){
 async function createUser(req, res){
 
     const { password } =  req.body;
-    const user = new User({ ...req.body})
+    const user = new User({...req.body})
 
+    user.role = 'user'
+console.log(user);
     const salt = bcrypt.genSaltSync(10);
     const hasPassword = bcrypt.hashSync(password, salt);
     user.password = hasPassword

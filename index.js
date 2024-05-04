@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3977;
 
 mongoose.set('strictQuery', true);
 
-mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/`, 
+mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/?retryWrites=true&w=majority&appName=tourman`, 
     (error) => {
         if(error) throw error;
 

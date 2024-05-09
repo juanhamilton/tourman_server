@@ -18,8 +18,12 @@ const TournamentSchema = mongoose.Schema({
     typeTournaments:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Type"
+    }],
+    competitors:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     }]
-})
+},{timestamps: true})
 
 TournamentSchema.plugin(mongoosePaginate);
 

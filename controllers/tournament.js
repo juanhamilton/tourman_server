@@ -3,8 +3,9 @@ const Format = require('../models/format');
 const Type = require('../models/type');
 
 
+
 async function createTournament(req, res) {
-    const tournament = new Tournament({...req.body, active: true})
+    const tournament = new Tournament({ ...req.body, active: true })
 
     const random = Math.random().toString(36).substring(2, 12)
     tournament.code = random.toUpperCase()
@@ -51,22 +52,22 @@ function updateTournament(req, res) {
     const { id } = req.params;
     const tournamentData = req.body;
 
-    Tournament.findByIdAndUpdate({_id: id}, tournamentData, (error) =>{
-        if(error){
-            res.status(400).send({msg: "Error al actualizar el Torneo"})
+    Tournament.findByIdAndUpdate({ _id: id }, tournamentData, (error) => {
+        if (error) {
+            res.status(400).send({ msg: "Error al actualizar el Torneo" })
         } else {
-            res.status(200).send({msg: "Actualizacion Correcta del Torneo"})
+            res.status(200).send({ msg: "Actualizacion Correcta del Torneo" })
         }
     })
 }
 
-function deleteTournament(req, res){
+function deleteTournament(req, res) {
     const { id } = req.params
-    Tournament.findByIdAndDelete({_id: id}, (error) =>{
-        if(error){
-            res.status(400).send({msg: "Error al Eliminar Torneo"})
+    Tournament.findByIdAndDelete({ _id: id }, (error) => {
+        if (error) {
+            res.status(400).send({ msg: "Error al Eliminar Torneo" })
         } else {
-            res.status(200).send({msg: "Torneo Eliminado"})
+            res.status(200).send({ msg: "Torneo Eliminado" })
         }
     })
 }
@@ -105,6 +106,32 @@ async function addType(req, res) {
     })
 }
 
+async function addCompetitor(req, res) {
+    const { code } = req.params;
+    const { idCompetitor } = req.body;
+
+    const tournament = await Tournament.findOne({ code: code })
+
+    const joinedComp = tournament.competitors.find(comp => comp == idCompetitor);
+
+    if (joinedComp) {
+        res.status(400).send({ msg: "Competidor agregado con anterioridad" });
+    } else {
+        tournament.competitors.push(idCompetitor);
+
+        tournament.save((error, tournamentStored) => {
+            if (error) {
+                res.status(400).send({ msg: "Error al agregar Cpmpetidor" });
+            } else {
+                res.status(201).send(tournamentStored);
+            }
+        })
+    }
+
+
+
+}
+
 module.exports = {
     createTournament,
     getTournament,
@@ -112,5 +139,6 @@ module.exports = {
     updateTournament,
     deleteTournament,
     addFormat,
-    addType
+    addType,
+    addCompetitor
 };
